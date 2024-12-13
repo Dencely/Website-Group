@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Documentation Website</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://scontent.xx.fbcdn.net/v/t1.15752-9/462560428_1296893418112023_3088540692311397962_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEIti0dv3CAsJVTmkKciE8SQyk4Q1K-nhBDKThDUr6eEKQNiMgaCI6Iin3lTxHqtyV4HTPCp9N7MFgloiEtmvMF&_nc_ohc=GgmdbA_KC-AQ7kNvgGIyBXV&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QG157HgllKWLcuq0SuJfHKLVYAKcnlV4abTWR-hgyPw5g&oe=6780B5C9') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.8;
+            text-align: justify;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: url('https://cdn.fbsbx.com/v/t59.2708-21/271391872_762462368447591_5694167651087623329_n.gif?_nc_cat=111&ccb=1-7&_nc_sid=cf94fc&_nc_eui2=AeFyviHJwerCLjdWQzh4Wy99XweK_5yAoB1fB4r_nICgHb006AMzKCfZNYr9z9ZezkyPSHzEKyBavlq8L_0GeVw0&_nc_ohc=PLTWIrk1gv4Q7kNvgE1px_q&_nc_zt=7&_nc_ht=cdn.fbsbx.com&_nc_gid=AjhNGZJNw-4af5okzP1bOZ8&oh=03_Q7cD1QHvWvAh_BgKJL3Ej1ZsTzGWsp0WJG8Q1mgEVeZTT6jgxQ&oe=675B2C0B') no-repeat center/cover;
+            color: #ffd902;
+            padding: 15px 0;
+            height: 200px;
+            text-align: center;
+            font-size: 4rem;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            color: #43c905;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), -2px -2px 4px rgba(0, 0, 0, 0.7), 2px -2px 4px rgba(0, 0, 0, 0.7), -2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background-color: #ffd902; 
+            overflow: hidden;
+            font-size: 1.1rem;
+        }
+
+        nav a {
+            color: #ffffff; 
+            padding: 15px 25px;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            margin: 0 10px; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #013b01;
+            color: #aa9104;
+        }
+
+        .container {
+            padding: 60px 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section {
+            display: none;
+            width: 75%;
+            margin: 30px auto;
+            background-color: rgba(255, 252, 252, 0.85);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .about {
+            margin-bottom: 30px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .contact-form button {
+            padding: 12px 25px;
+            background-color: #444444;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .image-wrapper {
+            margin-top: 20px;
+        }
+
+        .image-wrapper img {
+            max-width: 90%; 
+            max-height: 300px; 
+            width: auto;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            object-fit: cover; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-wrapper img:hover {
+            transform: scale(1.10);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-picture-btn, .remove-picture-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #006400; 
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .add-picture-btn:hover, .remove-picture-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-picture-btn {
+            margin-right: 10px;
+        }
+
+        .remove-picture-btn {
+            background-color: transparent;
+            color: red;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+        }
+        #members.image-wrapper img {
+        max-width: 100%;
+        max-height: 200px;
+        width: 50;
+        height: 20;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Journey as College Freshmen of FEU-Roosevelt</h1>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showSection('welcome')"><strong>Welcome</strong></a>
+        <a href="#" onclick="showSection('christmas-lighting')"><strong>Christmas Lighting</strong></a>
+        <a href="#" onclick="showSection('sinag-tamaraw')"><strong>Sinag Tamaraw Activity</strong></a>
+        <a href="#" onclick="showSection('halloween-event')"><strong>Halloween Event</strong></a>
+        <a href="#" onclick="showSection('members')"><strong>Members</strong></a>
+        <a href="#" onclick="showSection('contribution')"><strong>Contribution</strong></a>
+    </nav>
+
+    <div class="container">
+        <section id="welcome" class="section active">
+            <div class="about">
+                <h2>Welcome</h2>
+                <p>Welcome to FEU Roosevelt Marikina
+
+                    Step into a vibrant and dynamic community at FEU Roosevelt Marikina, where learning goes beyond the classroom and memories are made through meaningful experiences. As a proud part of the Far Eastern University network, we blend academic excellence with exciting activities that enrich the spirit and ignite creativity.  
+                    
+                    From the dazzling 
+                    Christmas Lighting Ceremonies that fill our campus with joy, to the fun and creativity of our 
+                    Halloween Costume Contests, we celebrate every season with enthusiasm. Join us in cheering for our athletes during the 
+                    Sinag Sports Festival, and feel the Tamaraw pride as we showcase talents and culture at Sinag Tamaraw. As the holidays draw near, our campus comes alive with the warmth of Christmas Preparations, bringing the FEU Roosevelt community together in festive unity.  
+                    
+                    Here, you’ll find a space to grow, connect, and thrive. Whether it’s through academic pursuits or unforgettable campus traditions, FEU Roosevelt Marikina is your home for learning, growth, and celebration.  
+                    
+                    Welcome to FEU Roosevelt Marikina—where learning meets life!</p>
+                <p></p>
+            </div>
+        </section>
+        <section id="christmas-lighting" class="section">
+            <div class="about">
+                <h2>Christmas Lighting</h2>
+                <P>What is the christmas lighting activity?, It is a small event held in one of the campuses of Far Eastern University and this campus is located at Marikina, Therefore naming itself FEU Marikina, This event is a small but a fun event planned by FEU, It is to light up their christmas tree inside the campus and show their Entrance as the first day of December approaches.</P>
+                <h3>Pictures</h3>
+                <p>This section contains the Christmas Lighting event pictures.</p>
+                <div class="image-wrapper" id="image-wrapper"></div>
+                <div class="image-wrapper" id="image-wrapper">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/466039420_1220547293038803_5357531085545547635_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFX2vauMvjN-4x8UEl_iFZN8z_LhLDMnDXzP8uEsMycNQS52b8lZ7bhcCNAJXRm6Jc2tmmaqz5IYFxExs0HJrgH&_nc_ohc=AM0HsXFiWEwQ7kNvgHUdVXV&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QE78xSSzn9R9UW2ofpSquetajiIkw9UlFY3XOcOymU-uw&oe=677EE31B" alt="Image 1">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462559798_571548928849847_354546296919942810_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGImHTCciMSXWl8-sMUTPpCGeGQBGdjupMZ4ZAEZ2O6k-rTH46uuwhZOkhkJJbY4yXnLkypmZRptiaJx87mi8kU&_nc_ohc=lqfthsmBo4oQ7kNvgFQwkF4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGPnKf9_eKvHc6n0uClTMt26nfS5WTZeyvl6-Pir3KdYA&oe=677EDDA1" alt="Image 2">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462581898_576084498709810_5147563092086170484_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFVQvV0lmi76-uF9GOfgeetBSethnr148kFJ62GevXjyRv13cnDUsQVuvT7sXg7m7aUACUbSSygTnq1uGyiLi0C&_nc_ohc=GYbVMQ7a-w4Q7kNvgEBjoCh&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QF8bAKzE4o-ICQdKS7Zg8J4jqGdlb32EtVC2W5cuuc24A&oe=677EE447" alt="Image 3">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462581780_633401285676389_121107675617750377_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeF1NRvdXPSYswLDm1gFp2K2wE1uEbEIYGDATW4RsQhgYDo3uLH8OKIb7XOWInNkkcgPPQi1jzJMqOwKgOpqEk8c&_nc_ohc=VTk596NXjkUQ7kNvgGOd740&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QG5_kqnhnxbhw7A1Sz-s2CF9ZzTE9r7Xw0YCGq49SFS6w&oe=677ED226" alt="Image 4">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/465196139_590648276687654_8293682371594421126_n.jpg?stp=dst-jpg_p2048x2048_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeE1sm5YKs7J7PnE2Z1SqSbWHei3qFIinlsd6LeoUiKeW6ILko_fkHDRj6oyRw8JgdCzLEfjwvVtxqIxV_-erbDK&_nc_ohc=nfkShqvBLrEQ7kNvgE3tr8n&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFwIdq0UUOxZXfaYV4WLLBE5hLPVrZj_TikOLfeT9nF8w&oe=677EE203" alt="Image 5">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462581940_937217367853854_1541886853348812136_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeE6_fxwuGGhc-NQcj90evaJdm9_zr7nC4h2b3_OvucLiMv7P7V_V0TC4x5n-jSmKgo4neD2eDpqDi6j6H6Ia74Z&_nc_ohc=x-MgQfNYcsEQ7kNvgFvsnYJ&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEbSEIeCz-L2eOU02dRQsgqwfVfQxgqBwOUYEvO_tByuw&oe=677ED86E" alt="Image 6">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462572911_2354971681521814_657133096972460131_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeHCUlf1Z30rNd_F1iMCPn9xcy57vSZQXQVzLnu9JlBdBeYcb4CNgFs6du29n5p3tcl5m2NyfBnh1upQmmb57Ltb&_nc_ohc=YvnJkdFgQ-UQ7kNvgHem_NI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEC1oZ6-PmX4qO-LqlCvxtk-XY1800Br-NhhF0EamtTWg&oe=677EF795" alt="Image 7">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462553036_1742022586637997_606878562569357649_n.jpg?stp=dst-jpg_p2048x2048_tt6&_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFiG2gXi9vaxAcA7KpGGxAAycM0j8aL4dDJwzSPxovh0ILoH141bxduPFHJ5eQNZqCkvI5YUuXiF2iCyr1AeuE9&_nc_ohc=NL7kOWXts0IQ7kNvgHTJcoI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QG-u0CJ2YL6yXAENz7pzL_Kte1Jo_oBIDgHljVE7rJNxg&oe=677EEDBF" alt="Image 8">
+                </div>                
+                </div>
+            </div>
+        </section>
+        
+        <section id="sinag-tamaraw" class="section">
+            <div class="about">
+                <h2>Sinag Tamaraw Activity</h2>
+                <p>What is the Sinag Tamarraw Activity?, The Sinag Tamarraw Activity is an event conducted in Far Eastern University(FEU) and a startup event for the Sinag Sports, It includes Bands, Food Stalls, Souvenir stores, And most of all a small competition of other courses participating on, It is called the Mr. and Ms. Sinag Sports.</p>
+                <h3>Pictures</h3>
+                <p>This section contains the pictures of the Sinag Tamarraw Activity</p>
+                <div class="image-wrapper" id="sinag-image-wrapper">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/466162134_563853006257817_6745460096161329682_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFt4UL4LU-C8m4L3fp1skV1ajn65Icq_LtqOfrkhyr8uyLZwklt1S8TJNF570GkeFDjFbteV4bCPo6de5tkIzjY&_nc_ohc=c4LRFKTurLoQ7kNvgGdgbuZ&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QF0koKHimgGUGF9iZxVSFtV2TEbZ6x1O-UFSXc9HIB01A&oe=677E4D88" alt="Image 1">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462581780_579033478208966_8350454427026494918_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeHNxeqoa9abFZo2qZ6mOPsq-tRwOeLx_Bv61HA54vH8G9hmZ7APfbyPcsyqJzZxGjVNpsRs1cNUsXG8sOsKnewF&_nc_ohc=PFFiTfdEwWoQ7kNvgFoTRsT&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEL5OL2uCYSHF6p8mt0ftrvUIQtBo7WjvU5qA6rJ0iFJw&oe=677E4493" alt="Image 2">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462571922_494967153602661_924286996638854261_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEEhN9tFtCZP2gMZYAbB9H64Mit1QZ15S7gyK3VBnXlLmkEplFnODd6Sv6PH6NcdFl7g2fOM7Xj5yxso-Ae1Oyy&_nc_ohc=1Zz5o5EauLIQ7kNvgEkhIXb&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGzWUAuQ-jFhFda134GzxB_WohOB6lNINtI2-7dRfbmrA&oe=677E617D" alt="Image 3">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/467241810_608566048494930_3191238246747863427_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGKTdazza7qFcLJMH_w5ZqqNhAHsY9xI7E2EAexj3EjsejsdPm1yK9RtovF_YlQU7B3QuV1uMfF6sD_4HNwVGMa&_nc_ohc=IyoeIjOv-HYQ7kNvgESJK3j&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHgzSM_lQwT4nKoJ4FcZmcNeZ2vYK97U1eFc_FigsYueg&oe=677E3F6E" alt="Image 4">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462585736_557903250381195_129791552631658744_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEr3_Jfh0L4HXe1OIHDP3uXwXv19wDRrojBe_X3ANGuiIHZuA7tNHekHQgcIkT2hM8UFjLOAw3SDNR72KeBBS4C&_nc_ohc=xeGv9oYOuQMQ7kNvgEYfHqw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEg7a1vMfSIlkBVcVO2biRZGfEIV5e_AUr5sU-x6gHUWg&oe=677E555C" alt="Image 5">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462552642_1171476494544747_2761524739473940745_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFJtr4DZdeSxKA4nd7CG7z7IKdj76hUskggp2PvqFSySAuv_EuF34_52VZIEnYATQO7EAEhM1tRz4n-UBDHKvo0&_nc_ohc=BLEc-XPMN1YQ7kNvgGInNNe&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGWPQSxhkJOvcF2nyDNAH4Y7akTo0qDW3fP8svPwi1e5A&oe=677EDD5F" alt="Image 6">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/467473779_1717831055460171_7815658217424434008_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEAbOLSSFvqXqX1wA1sz-daZn0oYYYyG7xmfShhhjIbvHVI9ebwQDJDE7VdPyDa-XP1LnzFDgxiWFN4zpNoz8dD&_nc_ohc=0X4b1wYz5HMQ7kNvgHYzOFo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGnRwKfgypYUKcGoYsr6Ls1biT6brcyzRZZJD-umylmcQ&oe=677EF349" alt="Image 7">
+                </div>
+            </div>
+        </section>
+<section id="halloween-event" class="section">
+    <div class="about">
+        <h2>Halloween Event</h2>
+        <p>What is the Halloween Event in FEU Marikina? The Halloween Event conducted in FEU Marikina is almost like a small pageant conducted, But instead of models, Students of FEU are tasked to wear a Cosplay of their own Game character, Cartoon Character, Movie Character, Or Anime Character. It is also a sign of the beginning of "Araw Ng Kamatayan" in the philippines.</p>
+        <h3>Pictures</h3>
+        <p>This section contains pictures from the Halloween Event.</p>
+        <div class="image-wrapper">
+            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462560558_1816773265839305_5648782073991574373_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeF7F4VhGb6FJG324h5IfeTcviITVZ3zMdi-IhNVnfMx2GCypN9qrW8Kmx_QyXlNZavmG2j4Z9lsXdOg6GQ64_jG&_nc_ohc=bIBIZTgO32kQ7kNvgHDn1L6&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGQ07tCd_y4ruh8rIf5yFK6-eBKbpydEEJUh9fxlz8UHA&oe=677F82DE" alt="Halloween Image 1">
+            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462542860_933537681547350_4093721815330869013_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeG4yVNYMySW8N-yyISWfouZcOHOTC5yw8Bw4c5MLnLDwPBvX4aMektaQt8oZiY6JbVsAyLw64C_e2GTVvPXv_jw&_nc_ohc=iXZZXf3UmGIQ7kNvgEHQKVT&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHxcyWhgSaeHC3g8aY0lDWjO_MR77nGUZm3hgPxmVYfeA&oe=677F8D2F" alt="Halloween Image 2">
+            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462565632_602753218979892_3128549515317224773_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEoKFwbty5LjuRuNNtHtYu-RqIuO9CSe2NGoi470JJ7YwzO9HnAiUXdoGJBcKU1GyVqLea56LiAMMq8YiQx2plr&_nc_ohc=afdFRwTGCgEQ7kNvgEuwg8d&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFq1sWIhcapBmM8gR7idaYUYifkpd020tvwELz8cACBMQ&oe=677F7810" alt="Halloween Image 3">
+            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462566290_954572846730451_6410542731339184492_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeF5R4l8HQQieeu9N-6oR5iG3xvjS7lG4UrfG-NLuUbhSocYE7VoO9NKUjM6S4mvNpMBKa4rcmnFxvhLxjpDPQQj&_nc_ohc=KeKPLSPLhXoQ7kNvgGK81BF&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGH1m1hy-xRvFhk2zFA-0tysa12UTJ2tko240Dk5F6fxw&oe=677F82F5" alt="Halloween Image 4">
+        </div>
+    </div>
+</section>
+
+<section id="members" class="section">
+    <div class="about">
+        <h2>Creators of the Website</h2>
+        <p>List of the group members</p>
+        <div class="image-wrapper">
+        <ul>
+            <li><strong>Rm Ramos</strong></li>
+            <img src="https://scontent.fmnl40-1.fna.fbcdn.net/v/t1.15752-9/462566443_552224217589385_2252017506440554612_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEzgMydQxFCHod0Stt5pG2nSDNOhavbE-FIM06Fq9sT4eGUGG66O-QIdNFYdraU8iFzB56Kf8yep0L8WMb11JPv&_nc_ohc=p9-us3b7TfYQ7kNvgHPVrO1&_nc_zt=23&_nc_ht=scontent.fmnl40-1.fna&oh=03_Q7cD1QG73pBPxes6NmSPRAnLfsWKtjAUbqaJ2Jf4mil7W47UdQ&oe=6780AF02" alt="Members Image 1">
+
+            <li><strong>Mark Iglesia</strong></li>
+            <img src="https://scontent.fmnl40-1.fna.fbcdn.net/v/t1.15752-9/462583715_1113397866863357_404358924444172773_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHjTxhQYN_EkKUw-O74ZfUHUaf1moPS8AFRp_Wag9LwAZQIpB9jfW33a5RH8q7rbfK4fwpjWcpqF9Csu62Tk8WX&_nc_ohc=_WNMrAY8-GQQ7kNvgFzbnHG&_nc_zt=23&_nc_ht=scontent.fmnl40-1.fna&oh=03_Q7cD1QGNlhV5D4icVsxQKn6XRJjZOWmqInaECBrRvsvm6sSc2g&oe=67808572" alt="Members Image 2">
+
+            <li><strong>Jesha Mei Rienda</strong></li>
+            <img src="https://scontent.fmnl40-2.fna.fbcdn.net/v/t1.15752-9/462652040_964897652363820_2247241696055349039_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFxJRsaKgGalLC1UY_jukDOQU-nneVm6cFBT6ed5WbpwdQp7IsufQn2PHRUJ4Q78v8iECd5ufFgJvqQeKmxrGoc&_nc_ohc=3dN5j4xjiMQQ7kNvgFYNgAT&_nc_zt=23&_nc_ht=scontent.fmnl40-2.fna&oh=03_Q7cD1QHVUhIDuf_lYTz3CLEar7aFUfh3SJlOFRvF2SN2mMeCtw&oe=678097A4" alt="Members Image 3">
+
+            <li><strong>Dencel Carpena</strong></li>
+            <img src="https://scontent.fmnl40-2.fna.fbcdn.net/v/t1.15752-9/467473081_3853813478216213_7635145379036820395_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHbXC6dfGfMg2r7w4BZEH2KodO6g71WY-Wh07qDvVZj5bhOaHsSPY0EM7rwpYqcFESITffiNp1WXie538_W126E&_nc_ohc=DLUsbt7DnW8Q7kNvgF416Ei&_nc_zt=23&_nc_ht=scontent.fmnl40-2.fna&oh=03_Q7cD1QGB4CBosB42Zg4l7kha9VDPQhx0_j3ebo1GVuDG8yjGSA&oe=6780B4A5" alt="Members Image 4">
+
+        </div>
+    </div>
+</section>
+
+<section id="contribution" class="section">
+    <div class="about">
+        <h3>Contribution Essay</h3>
+        <p>Group Members and their Essay</p>
+        <ul>
+            <li><strong>Rm Ramos</strong></li>
+            <p>My Experience Being a First-Year Student in Current Times 
+
+                To be a first-year student in today's time is pretty exciting yet challenging. For instance, due to technological advancement, learning is highly interactive, yet very demanding. For example, one may have to study how to correctly write computer programs, which may at first prove rather challenging to understand. At first it was so tiring and me personaly, I sometimes had little mistakes, like forgetting a semicolon in a program, but with  practice and patience, I learned how to overcome those problem. The first time our game worked, i couldn't help myself to scream because AT LAST IT WORKED!. At the same time, Im happy to experience this journey. With all the tiredness and late sleeps, Im thankful that this project that me and my team made, is successful. it taught me so much about combining creativity with technical skills.</p>
+            <li><strong>Mark Iglesia</strong></li>
+            <p>My Experience as a First-Year Student in FEU Roosevelt Marikina
+
+                Entering FEU Roosevelt Marikina as a first-year student has been an exciting and transformative journey. The transition from senior high school to college brought both opportunities and challenges, especially as I pursued my passion for programming and web development. The supportive environment at FEU Roosevelt Marikina, coupled with the camaraderie of my classmates and the guidance of our instructors, has helped me grow academically and personally. However, navigating the intricacies of learning programming and creating websites has been a significant part of this journey.  
+                
+                One of the first hurdles I encountered was understanding the logic behind programming. Writing even simple programs required patience and practice. Syntax errors and debugging were frequent frustrations that tested my perseverance. I learned that creating games in programming is especially challenging because it involves not only coding but also designing engaging gameplay, ensuring smooth mechanics, and debugging complex algorithms. Collaborating with classmates on projects also introduced the dynamics of teamwork, requiring clear communication and task delegation.  
+                
+                Building websites posed a different set of challenges. Learning HTML, CSS, and JavaScript initially felt overwhelming, but practice made the concepts clearer. The process of designing an aesthetically pleasing yet functional website taught me the importance of balancing creativity with technical accuracy. Integrating responsive designs and ensuring cross-platform compatibility were additional hurdles that deepened my problem-solving skills.  
+                
+                Despite these challenges, my journey as a first-year student at FEU Roosevelt Marikina has been deeply rewarding. I have gained a deeper appreciation for the complexities of programming and website creation, as well as the resilience required to overcome setbacks. As I look forward to the coming years, I am eager to further enhance my skills and take on more advanced projects, knowing that these foundational experiences have prepared me for greater achievements.
+                </p>
+            <li><strong>Jesha Mei Rienda</strong></li>
+            <p>My journey as a college freshman at FEU Roosevelt has been exciting and challenging. Starting college felt overwhelming at first, but I’ve learned to adjust little by little. Meeting new classmates and professors was a big step for me. I discovered that working together with others is very important.
+
+                One of the highlights of my first year is making a website with my groupmates for a project. At first, we didn’t know where to start. We divided the tasks and brainstormed ideas. Some of us worked on the design, others wrote the content, and one groupmate handled the coding. It was hard at times, especially when we had different ideas or struggled to understand the technical parts. But we kept communicating and helping each other.
+
+                Through this project, I learned how important teamwork is. I realized that everyone has something to contribute. I also discovered new skills, like organizing ideas, writing clearly, and even basic website design. It felt great to see our progress every step of the way.
+
+                This experience taught me that college isn’t just about studying. It’s also about learning how to work with others and solve problems together. The project wasn’t perfect, but it was ours, and I’m proud of what we made. I look forward to more challenges like this as I continue my journey at FEU Roosevelt.</p>
+            <li><strong>Dencel Simon Carpena</strong></li>
+            <p>Being a First-Year Student at FEU Roosevelt Marikina My experience as a first-year student at FEU Roosevelt Marikina has been adventurous and life-changing. There were advantages and disadvantages to moving from senior high school to college, particularly when I followed my interest for web development and programming. I have developed both intellectually and personally because to the encouraging atmosphere at FEU Roosevelt Marikina, my classmates' friendship, and our teachers' advice. One of my major contributions during this journey was building the code for a website, which gave me a useful and meaningful opportunity to put the programming skills I've been learning to use. A difficult but worthwhile aspect of studying programming and building websites has been navigating its complexities.</p>
+    </div>
+</section>
+        
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function addPicture(wrapperId) {
+            const fileInput = document.getElementById(wrapperId === 'image-wrapper' ? 'file-input' : 'sinag-file-input');
+            fileInput.click();
+
+            fileInput.onchange = () => {
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const imageWrapper = document.getElementById(wrapperId);
+                        const img = document.createElement('img');
+                        img.src = reader.result;
+
+                        const removeBtn = document.createElement('button');
+                        removeBtn.className = 'remove-picture-btn';
+                        removeBtn.textContent = 'X';  
+                        removeBtn.onclick = () => {
+                            imageWrapper.removeChild(img);
+                            imageWrapper.removeChild(removeBtn);
+                        };
+
+                        imageWrapper.appendChild(img);
+                        imageWrapper.appendChild(removeBtn);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+        }
+    </script>
+</body>
+</html>
